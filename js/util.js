@@ -1,4 +1,4 @@
-function getRandomNumber(min, max) {
+const getRandomNumber = (min, max) => {
   min = Math.abs(min);
   max = Math.abs(max);
   if (min === max) {
@@ -7,13 +7,12 @@ function getRandomNumber(min, max) {
     throw new Error('Incorrect range. Your minimun number is greater than maximum');
   }
   return (Math.random() * (max - min + 1) + min);
-}
-
+};
 const getRoundedRandomNumber = (min, max) => Math.floor(getRandomNumber(min, max));
+const getRandomNumberWithFloat = (min, max, floatNumber = 1) => Number(getRandomNumber(min, max).toFixed(floatNumber));
+const getRandomArrayElement = (elements) => elements[getRoundedRandomNumber(0, elements.length - 1)];
 
-const getRandomNumberWithFloat = (min,max,floatNumber = 1) => Number(getRandomNumber(min, max).toFixed(floatNumber));
-
-function getRandomArray(source) {
+const getRandomArray = (source) => {
   const array = [];
   const max = getRoundedRandomNumber(1, source.length);
   while (array.length < max) {
@@ -23,8 +22,6 @@ function getRandomArray(source) {
     }
   }
   return array;
-}
-
-const getRandomArrayElement = (elements) => elements[getRoundedRandomNumber(0, elements.length - 1)];
+};
 
 export {getRoundedRandomNumber, getRandomNumberWithFloat, getRandomArray, getRandomArrayElement};

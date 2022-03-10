@@ -1,4 +1,4 @@
-import {getRoundedRandomNumber, getRandomNumberWithFloat, getRandomArray,getRandomArrayElement} from './util.js';
+import {getRoundedRandomNumber, getRandomNumberWithFloat, getRandomArray, getRandomArrayElement} from './util.js';
 
 const MINIMUM_LAT = 35.65000;
 const MAXIMUM_LAT = 35.70000;
@@ -12,6 +12,7 @@ const CHEKIN_TIME = ['12:00', '13:00', '14:00'];
 const CHECKOUT_TIME = ['12:00', '13:00', '14:00'];
 const FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
 const PHOTOS = ['https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg', 'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg', 'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg'];
+const OFFERS_COUNT = 1;
 
 const craeateAd = (_elem, id) => {
   const lat = getRandomNumberWithFloat(MINIMUM_LAT, MAXIMUM_LAT, 5);
@@ -40,4 +41,6 @@ const craeateAd = (_elem, id) => {
   };
 };
 
-export {craeateAd};
+const OFFERS = Array.from({length: OFFERS_COUNT}, craeateAd);
+
+export { OFFERS };

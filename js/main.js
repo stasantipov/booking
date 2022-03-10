@@ -1,6 +1,8 @@
-import {craeateAd} from './data.js';
+import {OFFERS} from './data.js';
+import {createOffer} from './offer.js';
+import './util.js';
+const fragment = document.createDocumentFragment();
 
-const ADS_COUNT = 10;
+OFFERS.forEach((offer) => fragment.append(createOffer(offer)));
 
-const ADS = Array.from({length: ADS_COUNT}, craeateAd);
-console.log(ADS);
+document.querySelector('#map-canvas').append(fragment);
