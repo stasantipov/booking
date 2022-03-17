@@ -265,6 +265,11 @@ fieldset {
   width: 100%;
 }
 
+.ad-form__slider {
+  margin: 20px 0;
+  max-width: 220px;
+}
+
 .ad-form--disabled {
   opacity: 0.3;
   pointer-events: none;
@@ -1027,4 +1032,15 @@ fieldset {
 
 .hidden {
   display: none;
+}
+
+.noUi-tooltip {
+  display: none;
+}
+.noUi-active .noUi-tooltip {
+  display: block;
+}
+
+textarea {
+  resize: vertical;
 }
