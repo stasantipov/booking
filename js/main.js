@@ -1,15 +1,16 @@
-import { OFFERS } from './data.js';
-import { createOffer } from './offer.js';
 import './util.js';
-import { activateForms, deactivateForms } from './form.js';
 import './slider.js';
 import './form-validation.js';
-deactivateForms();
+import './map.js';
 
-const fragment = document.createDocumentFragment();
+/*
+1. Поправит отступы у слайдера
+2. Поправить стилизацию ошибок
+3. Настроить слайдер
+  3.1 В зависимости от типа жилья менятся максимальное и минимальное значение слайдера
+  3.2 Слайдер не должен прыгать
+4. Попробовать переписать валидацию комнат и гостей с использованием метода includes
+5. Подключить карту
+6. Реализовать кнопку очистки формы
 
-OFFERS.forEach((offer) => fragment.append(createOffer(offer)));
-
-document.querySelector('#map-canvas').append(fragment);
-
-activateForms();
+*/

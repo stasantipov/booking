@@ -12,7 +12,7 @@ const CHEKIN_TIME = ['12:00', '13:00', '14:00'];
 const CHECKOUT_TIME = ['12:00', '13:00', '14:00'];
 const FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
 const PHOTOS = ['https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg', 'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg', 'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg'];
-const OFFERS_COUNT = 1;
+const OFFERS_COUNT = 10;
 
 const craeateAd = (_elem, id) => {
   const lat = getRandomNumberWithFloat(MINIMUM_LAT, MAXIMUM_LAT, 5);
@@ -22,8 +22,8 @@ const craeateAd = (_elem, id) => {
       avatar: `img/avatars/user${String(++id).padStart(2, '0')}.png`,
     },
     offer: {
-      title: 'Обьявление о сдаче',
-      address: lat, lng,
+      title: 'Уютный домик в центре Берлина',
+      address: `${lat}. ${lng}`,
       price: getRoundedRandomNumber(1, MAXIMUM_PRICE),
       type: getRandomArrayElement(BUILDING_TYPES),
       rooms: getRoundedRandomNumber(1, MAXIMUM_ROOMS),
@@ -31,7 +31,7 @@ const craeateAd = (_elem, id) => {
       checkin: getRandomArrayElement(CHEKIN_TIME),
       checkout: getRandomArrayElement(CHECKOUT_TIME),
       features: getRandomArray(FEATURES),
-      description: 'Уютный домик в центре Берлина',
+      description: 'Все удобства есть, ждем Вас в гости к нам',
       photos: getRandomArray(PHOTOS),
     },
     location: {
