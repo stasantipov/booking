@@ -1,4 +1,6 @@
-import { typePrice } from './form.js';
+import { sendData } from './api.js';
+import { typePrice, blockSubmitButton, unblockSubmitButton } from './form.js';
+
 const form = document.querySelector('.ad-form');
 const price = document.querySelector('#price');
 const rooms = document.querySelector('#room_number');
@@ -31,9 +33,25 @@ pristine.addValidator(
   'Количество гостей должно быть меньше или равно количеству комнат'
 );
 
-form.addEventListener('submit', (evt) => {
-  if(pristine.validate()) {
-    return true;
-  }
-  evt.preventDefault();
-});
+const setUserFromSubmit = (onSuccess, onFail) => {
+  form.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    const isValid = pristine.validate();
+    if(isValid) {
+      blockSubmitButton();
+      sendData(
+        () => {
+          onSuccess();
+          unblockSubmitButton();
+        },
+        () => {
+          onFail();
+          unblockSubmitButton();
+        },
+        new FormData(evt.target)
+      );
+    }
+  });
+};
+
+export { setUserFromSubmit };

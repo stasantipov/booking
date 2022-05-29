@@ -89,4 +89,4 @@ const createOffer = ({offer, author}) => {
   return element;
 };
 
-export {createOffer};
+export { createOffer };

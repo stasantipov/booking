@@ -1,5 +1,4 @@
-const adForm = document.querySelector('.ad-form');
-const filtersForm = document.querySelector('.map__filters');
+import { adForm, resetMarker } from './map.js';
 const price = document.querySelector('#price');
 const type = document.querySelector('#type');
 const timeIn = document.querySelector('#timein');
@@ -12,6 +11,7 @@ const avatarImg = preview.querySelector('img');
 const photos = document.querySelector('#images');
 const photosContainer = document.querySelector('.ad-form__photo-container');
 const resetBtn = document.querySelector('.ad-form__reset');
+const submitButton = document.querySelector('.ad-form__submit');
 const typePrice = {
   flat: 1000,
   bungalow: 0,
@@ -20,34 +20,6 @@ const typePrice = {
   hotel: 3000
 };
 guests.value = rooms.value;
-
-const toggleClass = (element, className, value) => {
-  element.classList.toggle(className, value);
-};
-
-const toggleFormElements = (formElements, value) => {
-  formElements.forEach((element) => {element.disabled = value;});
-};
-
-const toggleAdForm = (value) => {
-  toggleClass(adForm, 'ad-form--disabled', value);
-  toggleFormElements(adForm.querySelectorAll('fieldset'), value);
-};
-
-const toggleFiltersForm = (value) => {
-  toggleClass(filtersForm, 'map__filters--disabled', value);
-  toggleFormElements(filtersForm.querySelectorAll('select, .map__features'), value);
-};
-
-const deactivateForms = () => {
-  toggleAdForm(true);
-  toggleFiltersForm(true);
-};
-
-const activateForms = () => {
-  toggleAdForm(false);
-  toggleFiltersForm(false);
-};
 
 const createImage = (files) => {
   const reader = new FileReader();
@@ -96,6 +68,17 @@ const resetForm = () => {
   photos.files.value = '';
   const userPhotos = document.querySelectorAll('.photo');
   userPhotos.forEach((element) => element.remove());
+  resetMarker();
+};
+
+const blockSubmitButton = () => {
+  submitButton.disabled = true;
+  submitButton.textContent = 'Отправляю...';
+};
+
+const unblockSubmitButton = () => {
+  submitButton.disabled = false;
+  submitButton.textContent = 'Опубликовать';
 };
 
 resetBtn.addEventListener('click', resetForm);
@@ -118,4 +101,4 @@ timeOut.addEventListener('change', () => {
 avatar.addEventListener('change', handleFileSelect, false);
 photos.addEventListener('change', handleMultiFileSelect, false);
 
-export { deactivateForms, activateForms, price, typePrice };
+export { price, typePrice, resetForm, blockSubmitButton, unblockSubmitButton };

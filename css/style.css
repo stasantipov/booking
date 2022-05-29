@@ -609,6 +609,12 @@ fieldset {
   border-radius: 5px;
 }
 
+.ad-form__photo img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+}
+
 .ad-form__element--submit {
   -ms-flex-preferred-size: 100%;
       flex-basis: 100%;
@@ -1078,4 +1084,23 @@ textarea {
   left: 0;
   bottom: -5px;
   width: max-content;
+}
+
+.noUi-tooltip {
+  display: none;
+}
+.noUi-active .noUi-tooltip {
+  display: block;
+}
+
+.error-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  padding: 10px 3px;
+  font-size: 30px;
+  text-align: center;
+  background-color: red;
+  z-index: 100;
 }
