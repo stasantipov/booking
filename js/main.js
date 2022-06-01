@@ -1,14 +1,17 @@
 import './form.js';
 import './slider.js';
 import { setUserFromSubmit } from './form-validation.js';
-import { createMarker } from './map.js';
+import { renderMarkers } from './map.js';
 import { successPopup, errorPopup } from './popup.js';
 import { getData, showError } from './api.js';
-const OFFERS_COUNT = 10;
-
+import { setMapFilters, filterOffers } from './filters.js';
+import { debounce } from './debounce.js';
 
 getData((offers) => {
-  offers.slice(0, OFFERS_COUNT).forEach((point) => createMarker(point));
+  renderMarkers(offers);
+  setMapFilters(debounce(
+    () => renderMarkers(filterOffers(offers)),
+  ));
 }, () => showError('Не удалось получить данные. Попробуйте ещё раз'));
 
 setUserFromSubmit(successPopup, errorPopup);

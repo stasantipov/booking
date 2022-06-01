@@ -7,6 +7,7 @@ const BASIC_MAP_SCALING = 13;
 const DECIMAL_PLACE = 5;
 const adForm = document.querySelector('.ad-form');
 const filtersForm = document.querySelector('.map__filters');
+const OFFERS_COUNT = 10;
 
 const toggleClass = (element, className, value) => {
   element.classList.toggle(className, value);
@@ -57,7 +58,7 @@ const mainPinMarker = L.icon({
 });
 
 const adPin = L.icon({
-  iconUrl: '../img/main-pin.svg',
+  iconUrl: '../img/pin.svg',
   iconSize: [AD_PIN_SIZE, AD_PIN_SIZE],
   iconAnchor: [AD_PIN_SIZE/2, AD_PIN_SIZE],
 });
@@ -98,6 +99,13 @@ const resetMarker = () => {
   });
 };
 
+const renderMarkers = (offers) => {
+  offers
+    .slice()
+    .slice(0, OFFERS_COUNT)
+    .forEach((point) => createMarker(point));
+};
+
 marker.addTo(map);
 
 marker.on('moveend', (evt) => {
@@ -105,4 +113,4 @@ marker.on('moveend', (evt) => {
   adress.value = `${coordinates.lat.toFixed(DECIMAL_PLACE)}, ${coordinates.lng.toFixed(DECIMAL_PLACE)}`;
 });
 
-export { createMarker, marker, adForm, resetMarker };
+export { createMarker, marker, adForm, resetMarker, map, markerGroup, renderMarkers };
