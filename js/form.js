@@ -1,10 +1,14 @@
-import { adForm, resetMarker } from './map.js';
+import { adForm, resetMarker, renderMarkers } from './map.js';
+import { mapFiltersForm } from './filters.js';
+import { getData } from './api.js';
+import { slider } from './slider.js';
+
 const price = document.querySelector('#price');
+const rooms = document.querySelector('#room_number');
+const guests = document.querySelector('#capacity');
 const type = document.querySelector('#type');
 const timeIn = document.querySelector('#timein');
 const timeOut = document.querySelector('#timeout');
-const rooms = document.querySelector('#room_number');
-const guests = document.querySelector('#capacity');
 const avatar = document.querySelector('#avatar');
 const preview = document.querySelector('.ad-form-header__preview');
 const avatarImg = preview.querySelector('img');
@@ -69,6 +73,9 @@ const resetForm = () => {
   const userPhotos = document.querySelectorAll('.photo');
   userPhotos.forEach((element) => element.remove());
   resetMarker();
+  mapFiltersForm.reset();
+  getData((offers) => renderMarkers(offers));
+  slider.noUiSlider.reset();
 };
 
 const blockSubmitButton = () => {
@@ -82,8 +89,6 @@ const unblockSubmitButton = () => {
 };
 
 resetBtn.addEventListener('click', resetForm);
-
-// 4. Сделать дроп зону
 
 type.addEventListener('change', () => {
   price.placeholder = typePrice[type.value];

@@ -1,12 +1,12 @@
 import { createOffer } from './offer.js';
+import { mapFiltersForm } from './filters.js';
+import { adForm } from './form-validation.js';
 const MAIN_PIN_SIZE = 52;
 const AD_PIN_SIZE = 40;
 const BASIC_LAT = 35.6938;
 const BASIC_LNG = 139.7034;
 const BASIC_MAP_SCALING = 13;
 const DECIMAL_PLACE = 5;
-const adForm = document.querySelector('.ad-form');
-const filtersForm = document.querySelector('.map__filters');
 const OFFERS_COUNT = 10;
 
 const toggleClass = (element, className, value) => {
@@ -23,8 +23,8 @@ const toggleAdForm = (value) => {
 };
 
 const toggleFiltersForm = (value) => {
-  toggleClass(filtersForm, 'map__filters--disabled', value);
-  toggleFormElements(filtersForm.querySelectorAll('select, .map__features'), value);
+  toggleClass(mapFiltersForm, 'map__filters--disabled', value);
+  toggleFormElements(mapFiltersForm.querySelectorAll('select, .map__features'), value);
 };
 
 const toggleForms = (value) => {

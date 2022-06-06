@@ -1,13 +1,13 @@
-import { sendData } from './api.js';
 import { typePrice, blockSubmitButton, unblockSubmitButton } from './form.js';
+import { sendData } from './api.js';
 
-const form = document.querySelector('.ad-form');
+const adForm = document.querySelector('.ad-form');
+const accommodationType = document.querySelector('#type');
 const price = document.querySelector('#price');
 const rooms = document.querySelector('#room_number');
 const guests = document.querySelector('#capacity');
-const accommodationType = document.querySelector('#type');
 
-const pristine = new Pristine(form, {
+const pristine = new Pristine(adForm, {
   classTo: 'ad-form__element',
   errorTextParent: 'ad-form__element',
   errorTextClass: 'ad-form__error-text',
@@ -34,7 +34,7 @@ pristine.addValidator(
 );
 
 const setUserFromSubmit = (onSuccess, onFail) => {
-  form.addEventListener('submit', (evt) => {
+  adForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
     const isValid = pristine.validate();
     if(isValid) {
@@ -54,4 +54,4 @@ const setUserFromSubmit = (onSuccess, onFail) => {
   });
 };
 
-export { setUserFromSubmit };
+export { setUserFromSubmit, adForm };

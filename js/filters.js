@@ -62,4 +62,4 @@ filterByRooms(offer) &&
 filterByGuests(offer) &&
 filterByFeatures(offer)));
 
-export { setMapFilters ,filterOffers };
+export { setMapFilters ,filterOffers, mapFiltersForm };
