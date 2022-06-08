@@ -21,14 +21,14 @@ const showPopup = () => {
   document.addEventListener('keydown', onDocumentEscKeydown);
 };
 
-const successPopup = () => {
+const showSuccessPopup = () => {
   message = document.querySelector('#success').content.cloneNode(true);
   showPopup();
 };
 
-const errorPopup = () => {
+const showErrorPopup = () => {
   message = document.querySelector('#error').content.cloneNode(true);
   showPopup();
 };
 
-export { successPopup, errorPopup };
+export { showSuccessPopup, showErrorPopup };

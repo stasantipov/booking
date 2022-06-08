@@ -5,7 +5,7 @@ const livingTypeInput = document.querySelector('#housing-type');
 const priceInput = document.querySelector('#housing-price');
 const roomsInput = document.querySelector('#housing-rooms');
 const guestsInput = document.querySelector('#housing-guests');
-const pricesByValues = {
+const PricesByValues = {
   'low': {
     min: 0,
     max: 10000
@@ -40,7 +40,7 @@ const filterByLivingType = ({offer}) => {
   }
 };
 
-const filterByPrice = ({offer}) => offer.price >= pricesByValues[priceInput.value].min && offer.price <= pricesByValues[priceInput.value].max;
+const filterByPrice = ({offer}) => offer.price >= PricesByValues[priceInput.value].min && offer.price <= PricesByValues[priceInput.value].max;
 
 const filterByRooms = ({offer}) => (roomsInput.value === 'any') ? offer : offer.rooms === Number(roomsInput.value);
 
@@ -62,4 +62,4 @@ filterByRooms(offer) &&
 filterByGuests(offer) &&
 filterByFeatures(offer)));
 
-export { setMapFilters ,filterOffers, mapFiltersForm };
+export { setMapFilters, filterOffers, mapFiltersForm };

@@ -1,8 +1,9 @@
-import { adForm, resetMarker, renderMarkers } from './map.js';
+import { adForm, resetMarker, renderMarkers, resetMap } from './map.js';
 import { mapFiltersForm } from './filters.js';
 import { getData } from './api.js';
 import { slider } from './slider.js';
 
+const DEFAULT_AVATAR = 'img/muffin-grey.svg';
 const price = document.querySelector('#price');
 const rooms = document.querySelector('#room_number');
 const guests = document.querySelector('#capacity');
@@ -16,7 +17,7 @@ const photos = document.querySelector('#images');
 const photosContainer = document.querySelector('.ad-form__photo-container');
 const resetBtn = document.querySelector('.ad-form__reset');
 const submitButton = document.querySelector('.ad-form__submit');
-const typePrice = {
+const TypePrice = {
   flat: 1000,
   bungalow: 0,
   house: 5000,
@@ -39,7 +40,7 @@ const createImage = (files) => {
   if (files) {
     return reader.readAsDataURL(files);
   }
-  photo.src = 'img/muffin-grey.svg';
+  photo.src = DEFAULT_AVATAR;
 };
 
 const createAvatar = (file) => {
@@ -50,25 +51,25 @@ const createAvatar = (file) => {
   if (file) {
     reader.readAsDataURL(file);
   }
-  avatarImg.src = 'img/muffin-grey.svg';
+  avatarImg.src = DEFAULT_AVATAR;
 };
 
-const handleFileSelect = (evt) => {
+const onAvatarImageChange = (evt) => {
   const file = evt.target.files[0];
   createAvatar(file);
 };
 
-const handleMultiFileSelect = (evt) => {
+const onPhotoImagesChange = (evt) => {
   const files = evt.target.files;
   for(let i = 0; i <= files.length; i++) {
     createImage(files[i]);
   }
 };
 
-const resetForm = () => {
+const onResetButtonClick = () => {
   adForm.reset();
-  avatar.files.value = 'img/muffin-grey.svg';
-  avatarImg.src = 'img/muffin-grey.svg';
+  avatar.files.value = DEFAULT_AVATAR;
+  avatarImg.src = DEFAULT_AVATAR;
   photos.files.value = '';
   const userPhotos = document.querySelectorAll('.photo');
   userPhotos.forEach((element) => element.remove());
@@ -76,6 +77,7 @@ const resetForm = () => {
   mapFiltersForm.reset();
   getData((offers) => renderMarkers(offers));
   slider.noUiSlider.reset();
+  resetMap();
 };
 
 const blockSubmitButton = () => {
@@ -88,11 +90,11 @@ const unblockSubmitButton = () => {
   submitButton.textContent = 'Опубликовать';
 };
 
-resetBtn.addEventListener('click', resetForm);
+resetBtn.addEventListener('click', onResetButtonClick);
 
 type.addEventListener('change', () => {
-  price.placeholder = typePrice[type.value];
-  price.min = typePrice[type.value];
+  price.placeholder = TypePrice[type.value];
+  price.min = TypePrice[type.value];
 });
 
 timeIn.addEventListener('change', () => {
@@ -103,7 +105,7 @@ timeOut.addEventListener('change', () => {
   timeIn.value = timeOut.value;
 });
 
-avatar.addEventListener('change', handleFileSelect, false);
-photos.addEventListener('change', handleMultiFileSelect, false);
+avatar.addEventListener('change', onAvatarImageChange, false);
+photos.addEventListener('change', onPhotoImagesChange, false);
 
-export { price, typePrice, resetForm, blockSubmitButton, unblockSubmitButton };
+export { price, TypePrice, onResetButtonClick, blockSubmitButton, unblockSubmitButton };

@@ -11,7 +11,7 @@ const TYPE = {
 
 const hideElement = (element) => {element.classList.add('hidden');};
 
-const addValue = (element, value) => {element.innerHTML = value;};
+const addValue = (element, value) => {element.textContent = value;};
 
 const createOffer = ({offer, author}) => {
   const element = TEMPLATE.cloneNode(true);

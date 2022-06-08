@@ -1,6 +1,8 @@
-import { resetForm } from './form.js';
+import { onResetButtonClick } from './form.js';
 
 const ERROR_SHOW_TIME = 5000;
+const DATABASE_URL = 'https://25.javascript.pages.academy/keksobooking';
+const DATABSE_OFFERS_URL = `${DATABASE_URL}/data`;
 
 const showError = (error) => {
   const errorContainer = document.createElement('div');
@@ -15,7 +17,7 @@ const showError = (error) => {
 };
 
 const getData = (onSuccess, onFail) => {
-  fetch('https://25.javascript.pages.academy/keksobooking/data')
+  fetch(DATABSE_OFFERS_URL )
     .then((response) => response.json())
     .then((offers) => {
       onSuccess(offers);
@@ -25,7 +27,7 @@ const getData = (onSuccess, onFail) => {
 
 const sendData = (onSuccess, onFail, body) => {
   fetch(
-    'https://25.javascript.pages.academy/keksobooking',
+    DATABASE_URL,
     {
       method: 'POST',
       body,
@@ -34,7 +36,7 @@ const sendData = (onSuccess, onFail, body) => {
     .then((response) => {
       if (response.ok) {
         onSuccess();
-        resetForm();
+        onResetButtonClick();
       } else {
         onFail('Не удалось отправить форму. Попробуйте ещё раз');
       }
